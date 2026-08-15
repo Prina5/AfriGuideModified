@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Log In | AfriGuide AI</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth-style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="auth-body">
+
+    <main class="auth_page">
+
+        <div class="bg_caption">Every login is a boarding call.</div>
+
+        <section class="auth_card auth_card--login">
+
+            <div class="auth_card_head">
+                <h1>Log in to AfriGuide AI</h1>
+                <p>Pick up your journey where you left it. Your saved destinations and preferences are waiting.</p>
+            </div>
+
+            <form id="loginForm" action="http://127.0.0.1:8000/login" method="POST" class="auth_form" novalidate>
+
+                <div class="form_group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required
+                        autocomplete="email">
+                </div>
+
+                <div class="form_group">
+                    <label for="password">Password</label>
+                    <div class="password_field">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required
+                            autocomplete="current-password">
+                        <button type="button" class="toggle_password" aria-label="Show password" data-target="password">
+                            <i class="ri-eye-line"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <span id="formError" class="field_hint field_error" hidden></span>
+
+                <button type="submit" class="btn auth_submit">
+                    Log In
+                </button>
+
+            </form>
+
+            <p class="auth_switch">
+                New to AfriGuide AI? <a href="Afriguidesignup.html">Create an account</a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <script>
+        document.querySelectorAll(".toggle_password").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const input = document.getElementById(btn.dataset.target);
+                const icon = btn.querySelector("i");
+                const isHidden = input.type === "password";
+                input.type = isHidden ? "text" : "password";
+                icon.className = isHidden ? "ri-eye-off-line" : "ri-eye-line";
+                btn.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
+            });
+        });
+
+        const form = document.getElementById("loginForm");
+        const formError = document.getElementById("formError");
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            formError.hidden = true;
+
+            const payload = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value
+            };
+
+            try {
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const data = await response.json().catch(() => ({}));
+                    formError.textContent = data.detail || "Invalid email or password.";
+                    formError.hidden = false;
+                    return;
+                }
+
+                const data = await response.json();
+                localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("username", data.username);
+
+                window.location.href = "Afriguideindex.html";
+            } catch (err) {
+                formError.textContent = "Could not reach the server. Please try again.";
+                formError.hidden = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
