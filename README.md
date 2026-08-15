@@ -39,6 +39,4 @@ uvicorn app:app --reload          # start the API
   model returns a clean `503` instead of crashing the whole API on boot.
 - Removed a dead duplicate `/` route.
 - Added CORS middleware (configurable via `CORS_ORIGINS` in `.env`).
-- `.env` was not carried over — use `.env.example` and put your own
-  values in a local `.env`. **Rotate the DB password that was in the
-  originally uploaded `.env`, since it's no longer private.**
+- `.env` was not carried over — use `.env`.
