@@ -1,6 +1,6 @@
 
 from backend.database import Base, engine
-import backend.model                      # noqa: F401  (registers models with Base.metadata)
+import backend.model                      
 
 confirm = input(
    
