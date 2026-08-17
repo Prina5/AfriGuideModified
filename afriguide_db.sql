@@ -1,7 +1,6 @@
---SELECT current_database();
 SELECT * FROM destinations;
 SELECT * FROM destination_features;
---DROP TABLE training_data;
+
 SELECT * 
 FROM training_data;
 SELECT *
@@ -84,7 +83,7 @@ VALUES
  'Large inland lake offering boating, fishing and scenic experiences.',
  450, 'Tropical', 'November-March'),
 
--- KENYA
+
 ('Amboseli National Park', 'Kenya',
  'Wildlife destination famous for elephants and views of Mount Kilimanjaro.',
  900, 'Tropical', 'June-October'),
@@ -101,7 +100,7 @@ VALUES
  'Mountain destination offering hiking, climbing and scenic landscapes.',
  950, 'Temperate', 'January-February'),
 
--- TANZANIA
+
 ('Serengeti National Park', 'Tanzania',
  'World-famous wildlife destination known for the Great Migration.',
  1200, 'Tropical', 'June-October'),
@@ -118,7 +117,7 @@ VALUES
  'Scenic park featuring Mount Meru, forests, lakes and wildlife.',
  750, 'Temperate', 'June-October'),
 
--- SOUTH AFRICA
+
 ('Kruger National Park', 'South Africa',
  'One of Africa''s largest game reserves and a major safari destination.',
  1000, 'Temperate', 'May-September'),
@@ -135,7 +134,6 @@ VALUES
  'Scenic coastal route featuring forests, beaches and outdoor activities.',
  900, 'Coastal', 'November-March'),
 
--- UGANDA
 ('Bwindi Impenetrable National Park', 'Uganda',
  'Rainforest destination famous for mountain gorilla trekking.',
  1300, 'Tropical', 'June-September'),
@@ -148,7 +146,7 @@ VALUES
  'Large national park featuring the powerful Murchison Falls.',
  800, 'Tropical', 'June-September'),
 
--- RWANDA
+
 ('Volcanoes National Park', 'Rwanda',
  'Mountainous park famous for gorilla trekking and volcanic scenery.',
  1400, 'Temperate', 'June-September'),
@@ -161,7 +159,7 @@ VALUES
  'Modern and culturally rich capital city known for cleanliness and history.',
  550, 'Temperate', 'June-September'),
 
--- NAMIBIA
+
 ('Sossusvlei', 'Namibia',
  'Iconic desert landscape featuring towering red sand dunes.',
  900, 'Desert', 'May-October'),
@@ -174,7 +172,7 @@ VALUES
  'Coastal adventure destination combining desert landscapes with ocean activities.',
  750, 'Coastal', 'May-October'),
 
--- BOTSWANA
+
 ('Okavango Delta', 'Botswana',
  'Unique inland delta famous for wildlife, waterways and safari experiences.',
  1400, 'Tropical', 'June-October'),
@@ -183,7 +181,7 @@ VALUES
  'Wildlife destination particularly famous for large elephant populations.',
  1000, 'Tropical', 'June-October'),
 
--- ZAMBIA
+
 ('South Luangwa National Park', 'Zambia',
  'Renowned wildlife destination known for walking safaris and diverse wildlife.',
  950, 'Tropical', 'June-October'),
@@ -192,7 +190,6 @@ VALUES
  'Wildlife and adventure destination along the Zambezi River.',
  1000, 'Tropical', 'June-October'),
 
--- ZIMBABWE
 ('Hwange National Park', 'Zimbabwe',
  'Zimbabwe''s largest national park and a major elephant habitat.',
  800, 'Tropical', 'June-October'),
@@ -201,7 +198,7 @@ VALUES
  'Ancient stone city and important archaeological and cultural site.',
  500, 'Tropical', 'May-October'),
 
--- MOROCCO
+
 ('Marrakech Medina', 'Morocco',
  'Historic city center featuring markets, architecture and cultural attractions.',
  650, 'Desert', 'March-May'),
@@ -210,7 +207,6 @@ VALUES
  'Mountain town famous for its distinctive blue-painted buildings.',
  550, 'Temperate', 'March-May'),
 
--- SENEGAL
 ('Gorée Island', 'Senegal',
  'Historic island known for its architecture and role in West African history.',
  500, 'Coastal', 'November-March');
