@@ -14,15 +14,12 @@
         .welcome-message,
         .logout-link {
             font-size: 1.4rem;
-            /* same size */
+
             font-weight: bold;
-            /* same weight */
             color: #ffffff;
-            /* same color */
             display: inline-block;
-            /* normalize both span and link */
             line-height: 1.4rem;
-            /* same vertical height */
+    
         }
 
         .logout-link {
@@ -58,7 +55,6 @@
             font-weight: bold;
             /* keep it bold */
             color: #ffffff;
-            /* optional: make it white if you want */
             margin-bottom: 10px;
         }
     </style>
@@ -102,7 +98,7 @@
         </div>
     </header>
 
-    <!-- ✅ Script to switch sidebar -->
+    <!-- Script to switch sidebar -->
     <script>
         const authSidebar = document.getElementById("authSidebar");
         const username = localStorage.getItem("username");
@@ -124,7 +120,7 @@
             // Signed up but not logged in → show login only
             authSidebar.innerHTML = `<li><a href="Afriguidelogin.html">Login</a></li>`;
         } else {
-            // First visit → show login + signup
+       
             authSidebar.innerHTML = `
                 <li><a href="Afriguidelogin.html">Login</a></li>
                 <li><a href="Afriguidesignup.html">Sign Up</a></li>
