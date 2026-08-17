@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AfriGuide AI</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet">
+
+    <style>
+        .welcome-message,
+        .logout-link {
+            font-size: 1.4rem;
+            /* same size */
+            font-weight: bold;
+            /* same weight */
+            color: #ffffff;
+            /* same color */
+            display: inline-block;
+            /* normalize both span and link */
+            line-height: 1.4rem;
+            /* same vertical height */
+        }
+
+        .logout-link {
+            margin-left: 15px;
+            /* spacing between welcome and logout */
+            cursor: pointer;
+            text-decoration: none;
+            /* remove underline */
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+
+
+
+        .nav_links {
+            display: flex;
+            /* put items in a row */
+            align-items: center;
+            /* vertically center them */
+            gap: 20px;
+            /* spacing between items */
+            list-style: none;
+            /* remove bullets */
+            margin: 0;
+            padding: 0;
+        }
+
+        .header_content h1 {
+            font-size: 3rem;
+            /* smaller size than default */
+            font-weight: bold;
+            /* keep it bold */
+            color: #ffffff;
+            /* optional: make it white if you want */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">
+                <a href="#">🌍AfriGuide AI</a>
+            </div>
+
+            <!-- Sidebar links will be replaced dynamically -->
+            <ul class="nav_links" id="authSidebar">
+                <li><a href="Afriguidelogin.html">Login</a></li>
+                <li><a href="Afriguidesignup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="section_container">
+            <div class="header_content">
+                <h1>Welcome to AfriGuide AI</h1>
+
+                <p>
+                    Discover breathtaking destinations across Africa through the power of Artificial Intelligence.
+                    AfriGuide AI recommends destinations based on your interests, budget, travel duration,
+                    preferred activities, and travel style.
+                </p>
+
+                <!-- Buttons -->
+                <div class="buttons">
+                    <a href="chatbot.html" class="btn chatbot-btn">
+                        <i class="ri-robot-2-fill"></i>
+                        Chat with AfriGuide AI
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ✅ Script to switch sidebar -->
+    <script>
+        const authSidebar = document.getElementById("authSidebar");
+        const username = localStorage.getItem("username");
+        const token = localStorage.getItem("access_token");
+
+        if (username && token) {
+            // Logged in → show welcome + logout
+            authSidebar.innerHTML = `
+                <li><span class="welcome-message">Welcome ${username}</span></li>
+                <li><a href="#" class="logout-link" id="logoutLink">Logout</a></li>
+            `;
+
+            document.getElementById("logoutLink").addEventListener("click", () => {
+                localStorage.removeItem("username");
+                localStorage.removeItem("access_token");
+                window.location.reload();
+            });
+        } else if (username && !token) {
+            // Signed up but not logged in → show login only
+            authSidebar.innerHTML = `<li><a href="Afriguidelogin.html">Login</a></li>`;
+        } else {
+            // First visit → show login + signup
+            authSidebar.innerHTML = `
+                <li><a href="Afriguidelogin.html">Login</a></li>
+                <li><a href="Afriguidesignup.html">Sign Up</a></li>
+            `;
+        }
+    </script>
+
+</body>
+
+</html>

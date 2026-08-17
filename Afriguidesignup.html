@@ -29,26 +29,12 @@
                 <p>Start your adventure. Save places, get smart recommendations, and explore Africa your way.</p>
             </div>
 
-            <!--
-                Field names below map onto the User table:
-                    first_name / last_name -> combined into users.username
-                    email                   -> users.email
-                    password                -> hashed server-side into users.password_hash
-                confirm_password is validation-only and is NOT sent to the DB.
-            -->
             <form id="signupForm" action="http://127.0.0.1:8000/register" method="POST" class="auth_form" novalidate>
 
-                <div class="form_group_row">
-                    <div class="form_group">
-                        <label for="first_name">First name</label>
-                        <input type="text" id="first_name" name="first_name" placeholder="Ama" required
-                            autocomplete="given-name">
-                    </div>
-                    <div class="form_group">
-                        <label for="last_name">Last name</label>
-                        <input type="text" id="last_name" name="last_name" placeholder="Owusu" required
-                            autocomplete="family-name">
-                    </div>
+                <div class="form_group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="AmaOwusu" required minlength="3"
+                        maxlength="100" autocomplete="username">
                 </div>
 
                 <div class="form_group">
@@ -126,11 +112,8 @@
                 return;
             }
 
-            const firstName = document.getElementById("first_name").value.trim();
-            const lastName = document.getElementById("last_name").value.trim();
-
             const payload = {
-                username: `${firstName} ${lastName}`,
+                username: document.getElementById("username").value.trim(),
                 email: document.getElementById("email").value,
                 password: password.value
             };
@@ -153,7 +136,7 @@
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("username", data.username);
 
-                window.location.href = "Afriguideindex.html";
+                window.location.href = "index.html";
             } catch (err) {
                 formError.textContent = "Could not reach the server. Please try again.";
                 formError.hidden = false;
@@ -162,5 +145,7 @@
     </script>
 
 </body>
+
+</html>
 
 </html>

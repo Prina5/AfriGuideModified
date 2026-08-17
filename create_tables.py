@@ -1,6 +1,18 @@
 from backend.database import engine, Base
-import backend.model  # noqa: F401  (registers models with Base.metadata)
+from backend.model import (
+    User,
+    Destination,
+    DestinationFeature,
+    UserPreference,
+    Recommendation,
+    TrainingData,
+    Conversation,
+    ConversationMessage
+)
+
 
 print("Creating database tables...")
+
 Base.metadata.create_all(bind=engine)
+
 print("Tables successfully created")
