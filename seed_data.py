@@ -849,7 +849,7 @@ try:
 
     ]
 
-    #  destinations first
+
     destinations = []
 
     for data in destinations_data:
@@ -871,7 +871,7 @@ try:
     db.add_all(destinations)
     db.commit()
 
-    # Refresh IDs
+
     for destination in destinations:
         db.refresh(destination)
 
