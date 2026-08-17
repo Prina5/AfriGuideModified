@@ -6,9 +6,7 @@ from backend.model import Destination, DestinationFeature, TrainingData
 db = SessionLocal()
 
 try:
-    # --------------------------------------------------
-    # LOAD DESTINATIONS
-    # --------------------------------------------------
+   
     destinations = db.query(Destination).join(DestinationFeature).all()
 
     if not destinations:
@@ -16,21 +14,16 @@ try:
             "No destinations with features found."
         )
 
-    # --------------------------------------------------
-    # POSSIBLE USER PREFERENCES
-    # --------------------------------------------------
+  
     climates = ["Tropical", "Coastal", "Desert", "Temperate"]
     types = ["Wildlife", "Beach", "Historical", "Adventure", "Cultural"]
 
-    # --------------------------------------------------
-    # GENERATE TRAINING DATA
-    # --------------------------------------------------
+ 
     training_records = []
 
     for _ in range(10000):
         destination = random.choice(destinations)
 
-        # USER PREFERENCES
         budget = random.randint(300, 3000)
         duration = random.randint(2, 14)
         climate = random.choice(climates)
@@ -92,9 +85,7 @@ try:
 
         training_records.append(record)
 
-    # --------------------------------------------------
-    # SAVE TO DATABASE
-    # --------------------------------------------------
+
     db.add_all(training_records)
     db.commit()
 
