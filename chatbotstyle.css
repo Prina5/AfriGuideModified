@@ -15,7 +15,6 @@
     --font-mono: "DM Sans", sans-serif;
 }
 
-/* ---------- Base ---------- */
 
 html,
 body {
@@ -31,7 +30,7 @@ body {
     overflow: hidden;
 }
 
-/* ---------- App shell ---------- */
+
 
 .chat_app {
     display: flex;
@@ -39,7 +38,7 @@ body {
     width: 100%;
 }
 
-/* ---------- Sidebar ---------- */
+
 
 .chat_sidebar {
     width: 290px;
@@ -77,7 +76,7 @@ body {
     cursor: pointer;
 }
 
-/* ---------- New Chat ---------- */
+
 
 .new_chat_btn {
     display: flex;
@@ -110,7 +109,7 @@ body {
     border-color: var(--gold-foil-bright);
 }
 
-/* ---------- Sidebar History ---------- */
+
 
 .sidebar_history {
     flex: 1;
@@ -197,7 +196,7 @@ body {
     color: var(--gold-foil-bright);
 }
 
-/* ---------- Account ---------- */
+
 
 .sidebar_account {
     position: relative;
@@ -278,7 +277,7 @@ body {
     color: var(--paper-cream);
 }
 
-/* ---------- Account Menu ---------- */
+
 
 .account_menu {
     position: absolute;
@@ -332,7 +331,6 @@ body {
     font-size: 1rem;
 }
 
-/* ---------- Sidebar Backdrop ---------- */
 
 .sidebar_backdrop {
     display: none;
@@ -349,7 +347,6 @@ body {
     display: block;
 }
 
-/* ---------- Main Chat Column ---------- */
 
 .chat_main {
     flex: 1;
@@ -362,7 +359,7 @@ body {
     background: var(--paper-cream);
 }
 
-/* ---------- Top Bar ---------- */
+
 
 .chat_topbar {
     display: flex;
@@ -450,7 +447,6 @@ body {
     box-shadow: 0 0 0 3px rgba(63, 167, 114, 0.18);
 }
 
-/* ---------- Messages ---------- */
 
 .chat_messages {
     flex: 1;
@@ -492,7 +488,6 @@ body {
     background: var(--ink-line);
 }
 
-/* ---------- Message ---------- */
 
 .message {
     display: flex;
@@ -511,7 +506,7 @@ body {
     flex-direction: row-reverse;
 }
 
-/* ---------- Message Avatar ---------- */
+
 
 .message_avatar {
     width: 32px;
@@ -533,7 +528,6 @@ body {
     font-size: 1rem;
 }
 
-/* ---------- Message Bubble ---------- */
 
 .message_bubble {
     position: relative;
@@ -583,7 +577,7 @@ body {
     text-align: right;
 }
 
-/* ---------- Recommendation Card ---------- */
+
 
 .rec_card {
     margin: 8px 0 10px;
@@ -667,7 +661,7 @@ body {
     font-weight: 500;
 }
 
-/* ---------- Typing Indicator ---------- */
+
 
 .typing_bubble {
     display: flex;
@@ -714,7 +708,6 @@ body {
     }
 }
 
-/* ---------- Input Bar ---------- */
 
 .chat_input_bar {
     display: flex;
@@ -739,7 +732,7 @@ body {
     box-shadow: 0 6px 18px rgba(27, 35, 64, 0.06);
 }
 
-/* ---------- Input Icon ---------- */
+
 
 .input_icon_btn {
     background: none;
@@ -760,7 +753,6 @@ body {
     color: var(--ink-navy);
 }
 
-/* ---------- Textarea ---------- */
 
 .chat_input_bar textarea {
     flex: 1;
@@ -789,7 +781,7 @@ body {
     color: #A8A08D;
 }
 
-/* ---------- Send Button ---------- */
+
 
 .send_btn {
     width: 38px;
@@ -823,7 +815,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* ---------- Disclaimer ---------- */
 
 .chat_disclaimer {
     text-align: center;
@@ -838,7 +829,7 @@ body {
     margin: 2px 0 8px;
 }
 
-/* ---------- Responsive ---------- */
+
 
 @media (max-width: 900px) {
 
@@ -889,7 +880,7 @@ body {
     }
 }
 
-/* ---------- Reduced Motion ---------- */
+
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -903,7 +894,7 @@ body {
     }
 }
 
-/* ---------- Final Black / Gray Theme ---------- */
+
 
 .chat-body,
 .chat_main {
