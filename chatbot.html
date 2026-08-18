@@ -171,7 +171,6 @@
             color: var(--white-dim);
         }
 
-
         .sidebar_account {
             display: flex;
             align-items: center;
@@ -240,7 +239,6 @@
             display: block;
         }
 
-
         .main {
             flex: 1;
             display: flex;
@@ -267,8 +265,6 @@
             justify-content: center;
             cursor: pointer;
         }
-
-     
 
         .hero {
             flex: 1;
@@ -382,7 +378,6 @@
             background: var(--route-dim);
         }
 
-
         .messages {
             flex: 1;
             overflow-y: auto;
@@ -446,7 +441,6 @@
             white-space: pre-line;
         }
 
-
         .thinking_bubble {
             display: flex;
             align-items: center;
@@ -485,8 +479,6 @@
                 opacity: 1;
             }
         }
-
-        
 
         .rec_list {
             display: flex;
@@ -530,7 +522,6 @@
             margin-top: 2px;
         }
 
-
         .choice_row {
             display: flex;
             flex-wrap: wrap;
@@ -567,7 +558,6 @@
             background: var(--route-dim);
             color: var(--route);
         }
-
 
         .input_wrap {
             padding: 0 26px 30px;
@@ -644,7 +634,6 @@
             background: #ff9457;
         }
 
-
         @media (max-width: 900px) {
             .sidebar {
                 position: fixed;
@@ -709,8 +698,6 @@
 
     <div class="app">
 
-     
-
         <aside class="sidebar" id="sidebar">
 
             <div class="sidebar_top">
@@ -721,29 +708,21 @@
                 </a>
 
                 <button class="sidebar_close" id="sidebarClose" aria-label="Close sidebar">
-
                     <i class="ri-close-line"></i>
-
                 </button>
 
             </div>
 
-
             <button class="new_chat_btn" id="newChatBtn">
-
                 <i class="ri-add-line"></i>
-
                 New trip chat
-
             </button>
-
 
             <nav class="sidebar_history" aria-label="Conversation history">
 
                 <span class="sidebar_label">
                     Chats
                 </span>
-
 
                 <div class="history_empty" id="historyEmpty">
 
@@ -756,26 +735,23 @@
 
                 </div>
 
-
                 <ul class="history_list" id="historyList" style="
-                    list-style:none;
-                    margin:0;
-                    padding:0;
-                    display:flex;
-                    flex-direction:column;
-                    gap:2px;
-                ">
+                        list-style:none;
+                        margin:0;
+                        padding:0;
+                        display:flex;
+                        flex-direction:column;
+                        gap:2px;
+                    ">
                 </ul>
 
             </nav>
-
 
             <div class="sidebar_account">
 
                 <div class="account_avatar">
                     <i class="ri-user-3-line"></i>
                 </div>
-
 
                 <div class="account_info">
 
@@ -789,33 +765,22 @@
 
                 </div>
 
-
                 <button class="account_signin" id="signInBtn">
-
                     Sign in
-
                 </button>
 
             </div>
 
         </aside>
 
-
         <div class="sidebar_backdrop" id="sidebarBackdrop">
         </div>
-
-
-       
 
         <main class="main">
 
             <button class="mobile_toggle" id="mobileToggle" aria-label="Open sidebar">
-
                 <i class="ri-menu-line"></i>
-
             </button>
-
-
 
             <div class="hero" id="hero">
 
@@ -828,11 +793,9 @@
 
                     </video>
 
-
                     <div class="hero_media_overlay"></div>
 
                 </div>
-
 
                 <div class="hero_content">
 
@@ -841,7 +804,6 @@
                         <span>AfriGuide</span>
                     </h1>
 
-
                     <p>
                         Let's find your next destination.
                         Tell me your budget, how long
@@ -849,42 +811,26 @@
                         of trip you're after.
                     </p>
 
-
                     <div class="chip_row">
 
                         <button class="chip" data-text="I want a beach escape, mid-range budget, about a week.">
-
                             <i class="ri-sun-line"></i>
-
                             Beach escape
-
                         </button>
-
 
                         <button class="chip" data-text="Plan a safari adventure for two, moderate budget.">
-
                             <i class="ri-footprint-line"></i>
-
                             Safari adventure
-
                         </button>
-
 
                         <button class="chip" data-text="I'd love a trip focused on historic cities and heritage sites.">
-
                             <i class="ri-ancient-gate-line"></i>
-
                             Historic cities
-
                         </button>
 
-
                         <button class="chip" data-text="Suggest a budget-friendly solo backpacking route.">
-
                             <i class="ri-backpack-line"></i>
-
                             Solo & budget
-
                         </button>
 
                     </div>
@@ -893,32 +839,22 @@
 
             </div>
 
-
-
             <div class="messages" id="messages">
             </div>
-
-
 
             <div class="input_wrap">
 
                 <form class="input_bar" id="chatForm">
 
                     <button type="button" class="icon_btn" aria-label="Attach file">
-
                         <i class="ri-attachment-2"></i>
-
                     </button>
-
 
                     <textarea id="chatInput" placeholder="Ask about destinations, budgets, or travel dates..." rows="1"
                         required></textarea>
 
-
                     <button type="submit" class="send_btn" aria-label="Send message">
-
                         <i class="ri-send-plane-fill"></i>
-
                     </button>
 
                 </form>
@@ -929,10 +865,7 @@
 
     </div>
 
-
     <script>
-
-
 
         const sidebar =
             document.getElementById("sidebar");
@@ -979,7 +912,6 @@
         );
 
 
-
         const API_BASE_URL =
             "http://127.0.0.1:8000";
 
@@ -1001,7 +933,6 @@
                 localStorage.getItem(
                     "username"
                 );
-
 
             const nameEl =
                 document.querySelector(
@@ -1069,7 +1000,6 @@
         })();
 
 
-      
         const hero =
             document.getElementById("hero");
 
@@ -1122,21 +1052,6 @@
         let pendingPreference = {};
 
 
-
-
-        /*
-            This is the main thinking system.
-        
-            Every bot response goes through this function.
-        
-            The bot will:
-        
-            1. Show three animated dots.
-            2. Wait a few seconds.
-            3. Remove the dots.
-            4. Display the real response.
-        */
-
         const BOT_THINKING_TIME = 1800;
 
 
@@ -1154,20 +1069,20 @@
 
             wrap.innerHTML = `
 
-        <div class="bubble thinking_bubble">
+                <div class="bubble thinking_bubble">
 
-            <span class="thinking_dot"></span>
+                    <span class="thinking_dot"></span>
+                    <span class="thinking_dot"></span>
+                    <span class="thinking_dot"></span>
 
-            <span class="thinking_dot"></span>
+                </div>
 
-            <span class="thinking_dot"></span>
-
-        </div>
-
-    `;
+            `;
 
 
-            messagesEl.appendChild(wrap);
+            messagesEl.appendChild(
+                wrap
+            );
 
             messagesEl.scrollTop =
                 messagesEl.scrollHeight;
@@ -1177,12 +1092,10 @@
         }
 
 
-        /*
-            This function makes the bot think first,
-            then display its message.
-        */
-
-        function botThink(callback, delay = BOT_THINKING_TIME) {
+        function botThink(
+            callback,
+            delay = BOT_THINKING_TIME
+        ) {
 
             const indicator =
                 createThinkingIndicator();
@@ -1200,7 +1113,6 @@
         }
 
 
-        
         heroVideo
             .play()
             .catch(() => { });
@@ -1222,7 +1134,6 @@
         }
 
 
-     
         chatInput.addEventListener(
             "input",
             () => {
@@ -1271,7 +1182,6 @@
         );
 
 
-
         document
             .querySelectorAll(".chip")
             .forEach((chip) => {
@@ -1295,8 +1205,6 @@
             });
 
 
-  
-
         function escapeHtml(str) {
 
             const div =
@@ -1310,13 +1218,6 @@
             return div.innerHTML;
         }
 
-
-
-        /*
-            USER MESSAGE
-        
-            User messages appear immediately.
-        */
 
         function addMessage(
             text,
@@ -1335,13 +1236,13 @@
 
             wrap.innerHTML = `
 
-        <div class="bubble">
+                <div class="bubble">
 
-            <p></p>
+                    <p></p>
 
-        </div>
+                </div>
 
-    `;
+            `;
 
 
             wrap.querySelector(
@@ -1359,13 +1260,6 @@
                 messagesEl.scrollHeight;
         }
 
-
-        /*
-            BOT MESSAGE
-        
-            This is now delayed and shows
-            the three dots first.
-        */
 
         function addBotMessage(
             text,
@@ -1386,8 +1280,6 @@
         }
 
 
-    
-
         function addBotMessageWithRecommendations(
             text,
             recommendations,
@@ -1402,10 +1294,8 @@
                             "div"
                         );
 
-
                     wrap.className =
                         "msg bot";
-
 
                     let recHtml = "";
 
@@ -1432,7 +1322,6 @@
                                     )}
                                     </span>
 
-
                                     <span class="rec_card_match">
 
                                         ${escapeHtml(
@@ -1451,7 +1340,6 @@
 
                                 </div>
 
-
                                 <div class="rec_card_country">
 
                                     ${escapeHtml(
@@ -1467,21 +1355,20 @@
                                 .join("") +
 
                             `</div>`;
-
                     }
 
 
                     wrap.innerHTML = `
 
-                <div class="bubble">
+                        <div class="bubble">
 
-                    <p></p>
+                            <p></p>
 
-                    ${recHtml}
+                            ${recHtml}
 
-                </div>
+                        </div>
 
-            `;
+                    `;
 
 
                     wrap.querySelector(
@@ -1504,8 +1391,6 @@
         }
 
 
-      
-
         function addBotMessageWithChoices(
             text,
             choices,
@@ -1520,7 +1405,6 @@
                         document.createElement(
                             "div"
                         );
-
 
                     wrap.className =
                         "msg bot";
@@ -1555,21 +1439,20 @@
                         </div>
 
                     `
-
                             : "";
 
 
                     wrap.innerHTML = `
 
-                <div class="bubble">
+                        <div class="bubble">
 
-                    <p></p>
+                            <p></p>
 
-                    ${choiceHtml}
+                            ${choiceHtml}
 
-                </div>
+                        </div>
 
-            `;
+                    `;
 
 
                     wrap.querySelector(
@@ -1639,7 +1522,6 @@
         }
 
 
-
         function addBotLoginPrompt(
             text,
             delay = BOT_THINKING_TIME
@@ -1660,34 +1542,33 @@
 
                     wrap.innerHTML = `
 
-                <div class="bubble">
+                        <div class="bubble">
 
-                    <p></p>
+                            <p></p>
 
-                    <div class="choice_row">
+                            <div class="choice_row">
 
-                        <button
-                            type="button"
-                            class="choice_btn"
-                            id="goToLoginBtn"
-                        >
-                            Log in
-                        </button>
+                                <button
+                                    type="button"
+                                    class="choice_btn"
+                                    id="goToLoginBtn"
+                                >
+                                    Log in
+                                </button>
 
+                                <button
+                                    type="button"
+                                    class="choice_btn"
+                                    id="goToSignupBtn"
+                                >
+                                    Sign up
+                                </button>
 
-                        <button
-                            type="button"
-                            class="choice_btn"
-                            id="goToSignupBtn"
-                        >
-                            Sign up
-                        </button>
+                            </div>
 
-                    </div>
+                        </div>
 
-                </div>
-
-            `;
+                    `;
 
 
                     wrap.querySelector(
@@ -1740,8 +1621,6 @@
         }
 
 
-     
-
         function addHistoryEntry(
             text
         ) {
@@ -1753,7 +1632,6 @@
 
                 historyAdded =
                     true;
-
             }
 
 
@@ -1769,43 +1647,42 @@
 
             li.style.cssText = `
 
-        display:flex;
-        align-items:center;
-        gap:9px;
-        padding:9px 10px;
-        border-radius:7px;
-        cursor:pointer;
-        color:var(--white-dim);
-        font-size:0.83rem;
+                display:flex;
+                align-items:center;
+                gap:9px;
+                padding:9px 10px;
+                border-radius:7px;
+                cursor:pointer;
+                color:var(--white-dim);
+                font-size:0.83rem;
 
-    `;
+            `;
 
 
             li.innerHTML = `
 
-        <i
-            class="ri-message-3-line"
-            style="color:var(--muted);"
-        ></i>
+                <i
+                    class="ri-message-3-line"
+                    style="color:var(--muted);"
+                ></i>
 
-        <span
-            style="
-                white-space:nowrap;
-                overflow:hidden;
-                text-overflow:ellipsis;
-            "
-        >
-            ${escapeHtml(text)}
-        </span>
+                <span
+                    style="
+                        white-space:nowrap;
+                        overflow:hidden;
+                        text-overflow:ellipsis;
+                    "
+                >
+                    ${escapeHtml(text)}
+                </span>
 
-    `;
+            `;
 
 
             historyList.prepend(
                 li
             );
         }
-
 
 
         const CLIMATE_CHOICES = [
@@ -1859,7 +1736,6 @@
 
             ],
 
-
             Coastal: [
 
                 {
@@ -1884,7 +1760,6 @@
 
             ],
 
-
             Desert: [
 
                 {
@@ -1908,7 +1783,6 @@
                 }
 
             ],
-
 
             Temperate: [
 
@@ -1958,7 +1832,6 @@
 
             ],
 
-
             Coastal: [
 
                 {
@@ -1978,7 +1851,6 @@
 
             ],
 
-
             Desert: [
 
                 {
@@ -1997,7 +1869,6 @@
                 }
 
             ],
-
 
             Temperate: [
 
@@ -2031,7 +1902,6 @@
         };
 
 
-
         function startQuestionnaire() {
 
             pendingPreference = {};
@@ -2041,7 +1911,7 @@
 
 
             addBotMessage(
-                "Great! 🌍 Let's find a destination that matches your preferences. I'll ask you a few questions first."
+                "Great! Let's find a destination that matches your preferences. I'll ask you a few questions first."
             );
 
 
@@ -2049,7 +1919,7 @@
                 () => {
 
                     addBotMessage(
-                        "What's your budget for this trip, in USD? (e.g. 1500)"
+                        "What's your budget for this trip, in USD? For example 1500"
                     );
 
                 },
@@ -2058,7 +1928,11 @@
         }
 
 
-        function handleBudgetAnswer(
+        // ========================================================
+        // BUDGET CHECK
+        // ========================================================
+
+        async function handleBudgetAnswer(
             rawText
         ) {
 
@@ -2081,25 +1955,84 @@
                 );
 
                 return;
-
             }
 
 
-            pendingPreference.budget =
-                value;
+            try {
+
+                const response =
+                    await fetch(
+                        `${API_BASE_URL}/budget/minimum`
+                    );
 
 
-            questionnaireState =
-                "duration";
+                if (!response.ok) {
+
+                    addBotMessage(
+                        "I couldn't check the minimum trip budget right now. Please try again."
+                    );
+
+                    return;
+                }
 
 
-            addBotMessage(
-                "Got it! 💰 How many days is the trip? (e.g. 7)"
-            );
+                const data =
+                    await response.json();
+
+
+                const minimumBudget =
+                    Number(
+                        data.minimum_budget
+                    );
+
+
+                if (
+                    value < minimumBudget
+                ) {
+
+                    addBotMessage(
+
+                        `A budget of $${value.toFixed(0)} is too low for the destinations available on AfriGuide. The minimum estimated trip cost is $${minimumBudget.toFixed(0)}. Please enter a budget of at least $${minimumBudget.toFixed(0)}.`
+
+                    );
+
+                    questionnaireState =
+                        "budget";
+
+                    return;
+                }
+
+
+                pendingPreference.budget =
+                    value;
+
+
+                questionnaireState =
+                    "duration";
+
+
+                addBotMessage(
+                    "Got it! How many days is the trip? Example 7"
+                );
+
+            }
+
+            catch (err) {
+
+                console.error(
+                    "Minimum budget check failed:",
+                    err
+                );
+
+
+                addBotMessage(
+                    "I couldn't check the minimum trip budget right now. Please try again."
+                );
+
+            }
         }
 
 
-      
         function handleDurationAnswer(
             rawText
         ) {
@@ -2124,7 +2057,6 @@
                 );
 
                 return;
-
             }
 
 
@@ -2138,7 +2070,7 @@
 
             addBotMessageWithChoices(
 
-                "What climate are you after? 🌍",
+                "What climate are you after? ",
 
                 CLIMATE_CHOICES,
 
@@ -2159,8 +2091,6 @@
             );
         }
 
-
-     
 
         function showAdaptiveTypeQuestion(
             climate
@@ -2183,27 +2113,21 @@
                 explanation =
                     "Since you've selected a desert climate 🌵, ";
 
-            }
-
-            else if (
+            } else if (
                 climate === "Coastal"
             ) {
 
                 explanation =
                     "Since you've selected a coastal climate 🏝️, ";
 
-            }
-
-            else if (
+            } else if (
                 climate === "Tropical"
             ) {
 
                 explanation =
                     "Since you've selected a tropical climate 🌴, ";
 
-            }
-
-            else if (
+            } else if (
                 climate === "Temperate"
             ) {
 
@@ -2236,7 +2160,6 @@
 
             );
         }
-
 
 
         function showAdaptiveSeasonQuestion(
@@ -2287,7 +2210,7 @@
                 "budget"
             ) {
 
-                handleBudgetAnswer(
+                await handleBudgetAnswer(
                     text
                 );
 
@@ -2325,15 +2248,13 @@
                 if (!selectedClimate) {
 
                     addBotMessage(
-
                         "Please choose one of the available climate options: Tropical, Coastal, Desert, or Temperate."
-
                     );
 
 
                     addBotMessageWithChoices(
 
-                        "What climate are you after? 🌍",
+                        "What climate are you after? ",
 
                         CLIMATE_CHOICES,
 
@@ -2523,11 +2444,9 @@
                 finishQuestionnaire();
 
             }
-
         }
 
 
-  
         async function finishQuestionnaire() {
 
             questionnaireState =
@@ -2550,11 +2469,6 @@
             }
 
 
-            /*
-                Show thinking while the backend
-                is processing the recommendation.
-            */
-
             const indicator =
                 createThinkingIndicator();
 
@@ -2566,8 +2480,6 @@
                     pendingPreference
                 );
 
-
-           
 
                 const prefResponse =
                     await fetch(
@@ -2632,8 +2544,6 @@
                 }
 
 
-     
-
                 const recResponse =
                     await fetch(
                         `${API_BASE_URL}/recommend`,
@@ -2673,7 +2583,8 @@
 
                     addBotMessage(
 
-                        "I saved your preferences successfully, but I couldn't generate your recommendations right now. Please check that your recommendation endpoint and model are running correctly."
+                        errData.detail ||
+                        "I saved your preferences successfully, but I couldn't generate your recommendations right now. Please try again."
 
                     );
 
@@ -2687,16 +2598,28 @@
 
 
                 if (
+                    recData.budget_too_low
+                ) {
+
+                    addBotMessage(
+                        recData.message
+                    );
+
+                    return;
+                }
+
+
+                if (
                     !recData.recommendations ||
                     recData.recommendations.length === 0
                 ) {
 
                     addBotMessage(
 
+                        recData.message ||
                         "I couldn't find a suitable destination for those preferences. Try adjusting your budget, duration, climate, or interests."
 
                     );
-
 
                     return;
                 }
@@ -2714,7 +2637,7 @@
 
                 addBotMessageWithRecommendations(
 
-                    `Perfect! 🌍 Based on your budget, trip duration, ${pendingPreference.climate.toLowerCase()} climate, and ${pendingPreference.destination_type.toLowerCase()} interest, I recommend: ${topNames}.`,
+                    `Perfect! Based on your budget, trip duration, ${pendingPreference.climate.toLowerCase()} climate, and ${pendingPreference.destination_type.toLowerCase()} interest, I recommend: ${topNames}.`,
 
                     recData.recommendations
 
@@ -2735,22 +2658,19 @@
 
                 addBotMessage(
 
-                    "I saved your preferences, but I couldn't reach the recommendation server. Please make sure your FastAPI backend is running and try again."
+                    "I couldn't reach the recommendation server. Please make sure your FastAPI backend is running and try again."
 
                 );
 
             }
-
         }
 
-
-        
 
         function showWelcomeMessage() {
 
             addBotMessage(
 
-                `Hello! Welcome to AfriGuide AI 🌍
+                `Hello! Welcome to AfriGuide AI
 
 We are your African travel recommendation assistant. I'm here to help you discover a destination that matches your preferences, budget, trip duration, climate, and interests.
 
@@ -2759,9 +2679,7 @@ I'll ask you a few simple questions about the kind of trip you want, and then I'
 When you're ready, just say "ready" and we'll begin.`
 
             );
-
         }
-
 
 
         chatForm.addEventListener(
@@ -2780,7 +2698,6 @@ When you're ready, just say "ready" and we'll begin.`
 
 
                 stopHeroVideo();
-
 
 
                 if (!conversationStarted) {
@@ -2838,7 +2755,6 @@ When you're ready, just say "ready" and we'll begin.`
                 }
 
 
-
                 if (
                     !messagesEl.classList.contains(
                         "show"
@@ -2874,7 +2790,6 @@ When you're ready, just say "ready" and we'll begin.`
                     "auto";
 
 
-             
                 if (
                     questionnaireState ===
                     null
@@ -2974,8 +2889,6 @@ When you're ready, just say "ready" and we'll begin.`
                 }
 
 
-          
-
                 if (
                     questionnaireState !== null
                 ) {
@@ -2997,8 +2910,6 @@ When you're ready, just say "ready" and we'll begin.`
                     return;
                 }
 
-
-              
 
                 const indicator =
                     createThinkingIndicator();
@@ -3052,8 +2963,17 @@ When you're ready, just say "ready" and we'll begin.`
 
                     if (!response.ok) {
 
+                        const errorData =
+                            await response
+                                .json()
+                                .catch(
+                                    () => ({})
+                                );
+
+
                         addBotMessage(
 
+                            errorData.detail ||
                             "Something went wrong reaching AfriGuide AI. Please try again."
 
                         );
@@ -3074,9 +2994,7 @@ When you're ready, just say "ready" and we'll begin.`
                             data.response
                         );
 
-                    }
-
-                    else if (
+                    } else if (
                         data.needs_preferences
                     ) {
 
@@ -3094,9 +3012,17 @@ When you're ready, just say "ready" and we'll begin.`
                             BOT_THINKING_TIME + 300
                         );
 
-                    }
+                    } else if (
+                        !data.recommendations ||
+                        data.recommendations.length === 0
+                    ) {
 
-                    else {
+                        addBotMessage(
+                            data.response ||
+                            "I couldn't find suitable recommendations for your preferences."
+                        );
+
+                    } else {
 
                         addBotMessageWithRecommendations(
 
@@ -3140,7 +3066,6 @@ When you're ready, just say "ready" and we'll begin.`
 
             }
         );
-
 
 
         document

@@ -1,9 +1,8 @@
-
 from backend.database import Base, engine
 import backend.model                      
 
 confirm = input(
-   
+    "This will DROP ALL TABLES and delete all data. Type 'yes' to continue: "
 )
 
 if confirm.strip().lower() == "yes":

@@ -28,6 +28,7 @@ from backend.schema import (
     UserRegister,
 )
 
+
 password_hash = PasswordHash.recommended()
 
 router = APIRouter()
@@ -109,6 +110,40 @@ def get_destination_features(
         )
 
     return features
+
+
+# ============================================================
+# MINIMUM BUDGET
+# ============================================================
+
+@router.get("/budget/minimum")
+def get_minimum_budget(
+    db: Session = Depends(get_db)
+):
+    """
+    Return the minimum estimated cost among
+    all destinations.
+    """
+
+    minimum_budget = (
+        db.query(Destination.estimated_cost)
+        .order_by(
+            Destination.estimated_cost.asc()
+        )
+        .first()
+    )
+
+    if minimum_budget is None:
+        raise HTTPException(
+            status_code=404,
+            detail="No destination costs found."
+        )
+
+    return {
+        "minimum_budget": float(
+            minimum_budget[0]
+        )
+    }
 
 
 # ============================================================
@@ -376,6 +411,8 @@ def recommend_destinations(
     """
     Generate recommendations using the latest
     saved preferences of the authenticated user.
+
+    Budget is treated as a hard constraint.
     """
 
     preference = (
@@ -409,7 +446,7 @@ def recommend_destinations(
 
     try:
 
-        recommendations = generate_recommendations(
+        recommendation_result = generate_recommendations(
             user_id=current_user.user_id,
             preference=preference,
             destinations=destinations,
@@ -441,16 +478,52 @@ def recommend_destinations(
             )
         )
 
+    if recommendation_result["budget_too_low"]:
+
+        minimum_budget = (
+            recommendation_result["minimum_budget"]
+        )
+
+        user_budget = float(
+            preference.budget
+        )
+
+        return {
+            "message": (
+                f"Your budget of ${user_budget:.0f} "
+                f"is below the minimum estimated trip "
+                f"cost of ${minimum_budget:.0f}. "
+                f"Please enter a budget of at least "
+                f"${minimum_budget:.0f}."
+            ),
+            "budget_too_low": True,
+            "minimum_budget": minimum_budget,
+            "recommendations": [],
+        }
+
+    recommendations = (
+        recommendation_result["recommendations"]
+    )
+
     if not recommendations:
 
         return {
-            "message": "No matching destinations found.",
-            "recommendations": []
+            "message": (
+                "I couldn't find any destinations "
+                "within your budget that also have "
+                "the required recommendation data."
+            ),
+            "budget_too_low": False,
+            "recommendations": [],
         }
 
     return {
         "message": (
             "Recommendations generated successfully"
+        ),
+        "budget_too_low": False,
+        "minimum_budget": (
+            recommendation_result["minimum_budget"]
         ),
         "recommendations": recommendations,
     }
@@ -552,9 +625,7 @@ def get_conversations(
 
     return [
         {
-            "conversation_id": (
-                conversation.conversation_id
-            ),
+            "conversation_id": conversation.conversation_id,
             "title": conversation.title,
             "created_at": conversation.created_at,
         }
@@ -562,56 +633,14 @@ def get_conversations(
     ]
 
 
-@router.get("/conversations")
-def get_conversations(
+@router.get(
+    "/conversations/{conversation_id}"
+)
+def get_conversation(
+    conversation_id: int,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    """
-    Return all conversations belonging to
-    the authenticated user.
-    """
-
-    print("========== GET CONVERSATIONS ==========")
-    print("Current user ID:", current_user.user_id)
-
-    try:
-        conversations = (
-            db.query(Conversation)
-            .filter(
-                Conversation.user_id == current_user.user_id
-            )
-            .order_by(
-                Conversation.created_at.desc()
-            )
-            .all()
-        )
-
-        print("Number of conversations:", len(conversations))
-
-        result = [
-            {
-                "conversation_id": conversation.conversation_id,
-                "title": conversation.title,
-                "created_at": conversation.created_at,
-            }
-            for conversation in conversations
-        ]
-
-        print("Conversation result:", result)
-
-        return result
-
-    except Exception as e:
-        print("========== CONVERSATION ERROR ==========")
-        print(type(e).__name__)
-        print(str(e))
-        print("========================================")
-
-        raise HTTPException(
-            status_code=500,
-            detail=f"Conversation error: {type(e).__name__}: {str(e)}"
-        )
     """
     Return one conversation and all its messages.
 
@@ -698,7 +727,9 @@ def save_conversation_message(
             detail="Conversation not found."
         )
 
-    message_text = message_data.message.strip()
+    message_text = (
+        message_data.message.strip()
+    )
 
     if not message_text:
         raise HTTPException(
@@ -714,8 +745,6 @@ def save_conversation_message(
 
     db.add(new_message)
 
-    # If this is the first user message, use it
-    # as the conversation title.
     if message_data.sender == "user":
 
         existing_user_message = (
@@ -758,10 +787,6 @@ def delete_conversation(
     """
     Delete a conversation belonging to the
     authenticated user.
-
-    Because ConversationMessage uses
-    ON DELETE CASCADE, its messages are
-    deleted as well.
     """
 
     conversation = (
@@ -804,19 +829,15 @@ def chat(
 ):
     """
     Process a chatbot message.
-
-    NOTE:
-    Conversation history is handled by the
-    /conversations endpoints above.
     """
 
     intent = detect_intent(
         request.message
     )
 
-    # --------------------------------------------------------
-    # Recommendation request
-    # --------------------------------------------------------
+    # ========================================================
+    # RECOMMENDATION REQUEST
+    # ========================================================
 
     if intent == "recommendation":
 
@@ -866,11 +887,13 @@ def chat(
 
         try:
 
-            recommendations = generate_recommendations(
-                user_id=current_user.user_id,
-                preference=preference,
-                destinations=destinations,
-                db=db,
+            recommendation_result = (
+                generate_recommendations(
+                    user_id=current_user.user_id,
+                    preference=preference,
+                    destinations=destinations,
+                    db=db,
+                )
             )
 
         except FileNotFoundError:
@@ -904,15 +927,46 @@ def chat(
                 "recommendations": None,
             }
 
+        if recommendation_result["budget_too_low"]:
+
+            minimum_budget = (
+                recommendation_result[
+                    "minimum_budget"
+                ]
+            )
+
+            user_budget = float(
+                preference.budget
+            )
+
+            return {
+                "intent": "recommendation",
+                "response": (
+                    f"Your budget of ${user_budget:.0f} "
+                    f"is below the minimum estimated "
+                    f"trip cost of ${minimum_budget:.0f}. "
+                    f"Please enter a budget of at least "
+                    f"${minimum_budget:.0f}."
+                ),
+                "needs_login": False,
+                "needs_preferences": False,
+                "recommendations": [],
+            }
+
+        recommendations = (
+            recommendation_result["recommendations"]
+        )
+
         if not recommendations:
 
             return {
                 "intent": "recommendation",
                 "response": (
-                    "I couldn't find strong matches "
-                    "for your current preferences. "
-                    "Try adjusting your budget, "
-                    "climate, or trip type."
+                    "I couldn't find any destinations "
+                    "within your budget that match "
+                    "the available recommendation data. "
+                    "Try increasing your budget or "
+                    "changing your travel preferences."
                 ),
                 "needs_login": False,
                 "needs_preferences": False,
@@ -935,9 +989,9 @@ def chat(
             "needs_preferences": False,
         }
 
-    # --------------------------------------------------------
-    # Travel question
-    # --------------------------------------------------------
+    # ========================================================
+    # TRAVEL QUESTION
+    # ========================================================
 
     if intent == "travel_question":
 
@@ -951,9 +1005,9 @@ def chat(
             "needs_preferences": False,
         }
 
-    # --------------------------------------------------------
-    # Unrelated question
-    # --------------------------------------------------------
+    # ========================================================
+    # UNRELATED QUESTION
+    # ========================================================
 
     return {
         "intent": "unrelated",
