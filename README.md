@@ -5,15 +5,15 @@
 
 
 
-What it is
+**What it is**
 
 A full-stack, ML-powered travel recommendation system that helps users find African destinations matched to their personal preferences — budget, trip duration, climate, destination type, and interests (wildlife, adventure, beach, family, history, culture).
 
-Why it exists
+**Why it exists**
 
 Most travel platforms show generic, one-size-fits-all destination lists. AfriGuide AI instead generates personalized rankings based on individual constraints, aiming to surface both popular and lesser-known African destinations that genuinely fit the traveler.
 
-How it works
+**How it works**
 Component	Details
 ML Model	Random Forest classifier (300 estimators, class-weight balanced) predicting match probability between a user profile and a destination
 Data	Curated destination database (cost, climate, season, coordinates, feature scores 0–5) + 10,000 synthetic preference-destination pairs for training, since real user data wasn't available
@@ -23,7 +23,7 @@ Frontend	HTML/CSS with an African-landscape theme; landing page + split-screen a
 
 Flow: User registers → sets travel preferences → system scores every destination with the trained model → returns top 5 matches with probability scores and short explanatory messages ("Excellent match," "Very good match," etc.)
 
-Results
+**Results**
 ~86.3% accuracy on held-out synthetic test data
 Strong performance on negative (non-match) examples; moderate performance on positive (recommended) class due to class imbalance
 Qualitative checks confirmed recommendations align sensibly with stated preferences
