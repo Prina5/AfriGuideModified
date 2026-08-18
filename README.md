@@ -85,3 +85,11 @@ uvicorn app:app --reload          # start the API
 - Removed a dead duplicate `/` route.
 - Added CORS middleware (configurable via `CORS_ORIGINS` in `.env`).
   
+Frontend
+The frontend is a static HTML/CSS/JavaScript application with three main entry points:
+
+Landing page (index.html / Afriguideindex.html) – Hero section with an African landscape theme and a dynamic navigation bar. It checks localStorage for an access_token and username. If the user is logged in it shows a welcome message and logout option; otherwise it shows Login / Sign Up links.
+Authentication pages (Afriguidelogin.html and Afriguidesignup.html) – Clean form-based login and registration screens styled with auth-style.css. On successful submit they call the FastAPI /login or /register endpoints, store the returned JWT and username in localStorage, and redirect the user back to the landing page.
+Chat interface (chatbot.html) – The main interactive experience. It presents a conversational UI that walks the user through a short questionnaire (budget → duration → climate → destination type → optional season). Once the answers are collected, the frontend posts the preferences to /preferences (authenticated with the JWT) and then requests recommendations from /recommend. Results are displayed as ranked cards with match scores and short explanations. Styling is handled by the embedded styles and chatbotstyle.css.
+
+All frontend–backend communication uses fetch against the FastAPI server running at http://127.0.0.1:8000. Authentication state is managed entirely client-side via localStorage, keeping the pages lightweight and easy to host statically while remaining fully integrated with the secure backend.
